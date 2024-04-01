@@ -1,6 +1,6 @@
 # CHECKPOINT EDGE COMPUTING
 
-## Video Eexplicativo
+## Video Explicativo
 https://youtu.be/M_RLufz0vbU
 
 ## Projeto de Medição de Luz com Arduino
