@@ -1,5 +1,8 @@
 # CHECKPOINT EDGE COMPUTING
 
+## Video Eexplicativo
+https://youtu.be/M_RLufz0vbU
+
 ## Projeto de Medição de Luz com Arduino
 Este projeto utiliza um Arduino para medir a quantidade de luz ambiente e controlar LEDs de acordo com a luminosidade. O sistema possui três estágios de iluminação, indicados por LEDs de diferentes cores e acompanhados por beeps sonoros. Vamos criar um arquivo .readme para documentar esse projeto.
 
