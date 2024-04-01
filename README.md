@@ -33,42 +33,51 @@ Montagem do Circuito
 
 ## Código do Projeto
 ~~~arduino
-// Projeto de Medição de Luz Ambiente
+//Definindo as portas
+int LEDGreen = 8; //Led Verde na está na porta 8
+int LEDYellow = 9;// Led Amarela está na porta9 
+int LEDRed = 10;// Led Vermelha está na porta 10
+int Buzzer = 11;//Buzina está na porta 11
 
-int LEDGreen = 8;   // LED Verde na porta 8
-int LEDYellow = 9;  // LED Amarelo na porta 9
-int LEDRed = 10;    // LED Vermelho na porta 10
-int Buzzer = 11;    // Buzina na porta 11
-
+//Definindo o pinMode (entrada ou saida)
 void setup() {
-  Serial.begin(9600);  // Velocidade de transmissão de bits
-  pinMode(LEDGreen, OUTPUT);
-  pinMode(LEDYellow, OUTPUT);
-  pinMode(LEDRed, OUTPUT);
-  pinMode(Buzzer, OUTPUT);
+  Serial.begin(9600);//velocidade de transmissão de bits
+  pinMode(LEDGreen, OUTPUT);//Led Verde dispositivo de saída
+  pinMode(LEDYellow, OUTPUT);//Led Amarelo dispositivo de saída
+  pinMode(LEDRed, OUTPUT);//Led Vermelha dispositivo de saída
+  pinMode(Buzzer, OUTPUT);//Buzina dispositivo de saída
 }
 
+//Definindo o que o sistema irá fazer
 void loop() {
-  int LDR = analogRead(A0);  // Leitura do sensor LDR
-  Serial.println(LDR);       // Mostra o valor no Monitor Serial
-
-  // Condições para os LEDs
+  int LDR = analogRead(A0); //Definido a variável LDR como Analog, na porta A0
+  Serial.println(LDR);      //Mostrar o valor da variável LDR no Monitor Serial
+  
+  //Condicionais
+  //Se o valor da varável LDR for menor que 900
   int INT = map(LDR, 0, 1023, 0, 100);
-  if (INT < 45) {
-    digitalWrite(LEDGreen, HIGH);
-    digitalWrite(LEDYellow, LOW);
-    digitalWrite(LEDRed, LOW);
-  } else if (INT > 45 && INT < 80) {
-    digitalWrite(LEDGreen, LOW);
-    digitalWrite(LEDYellow, HIGH);
-    digitalWrite(LEDRed, LOW);
-  } else {
-    digitalWrite(LEDGreen, LOW);
-    digitalWrite(LEDYellow, LOW);
-    digitalWrite(LEDRed, HIGH);
-    tone(Buzzer, 1000);  // Beep no LED vermelho
+  if(INT<45){
+    digitalWrite(LEDGreen, HIGH);//Led Verde Acesa
+    digitalWrite(LEDYellow, LOW);//Led Amarela Apagada
+    digitalWrite(LEDRed, LOW);// Led Vermelha Apagada
   }
-  delay(10);
+  //Senão Se o valor da váriavel LDR estiver entre 900 e 950
+  else if(INT>45 and INT<80) {
+    digitalWrite(LEDGreen, LOW);         //Led Verde Apagada
+    digitalWrite(LEDYellow, HIGH);       //Led Amarela Acesa
+    digitalWrite(LEDRed, LOW);           //Led Vermelha Apagada
+    tone(Buzzer,150,3000);               //Soar(Buzina, no "tom" 440, por 3000 milisegudos (3 segundos)
+    delay(4000);                         //delay de 1000 milosegundos (1segundos)para a buzina voltar a soar, sendo 3000 durente a buzina e 1000 após terminar de tocar
+  }
+  //Senão Se o valor da varável LDR for maior que 950
+  else if( INT>80){
+      digitalWrite(LEDGreen, LOW);//Led Verde Apagada
+      digitalWrite(LEDYellow, LOW);//Led Amarela Apagada
+      digitalWrite(LEDRed, HIGH);//Led Vermelha Acesa
+      tone(Buzzer,440,3000);//Soar(Buzina, no "tom" 440, por 3000 milisegudos (3 segundos)
+      delay(4000);//delay de 1000 milosegundos (1segundos)para a buzina voltar a soar, sendo 3000 durente a buzina e 1000 após terminar de tocar
+    }
+           
 }
 ~~~
 
