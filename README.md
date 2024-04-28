@@ -83,7 +83,6 @@ void loop() {
            
 }
 ~~~
-![Foto do projeto]
 
 ## Possíveis Erros
 Se o projeto não funcionar, verifique:
